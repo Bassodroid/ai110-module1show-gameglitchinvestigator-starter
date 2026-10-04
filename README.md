@@ -25,28 +25,29 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] **Game purpose:** The game challenges the player to guess a randomly generated secret number within a difficulty-specific range and attempt limit. It provides hints and tracks the player's score.
+- [x] **Bugs found:** The secret number and game state could reset unexpectedly, the higher/lower hints pointed in the wrong direction, guesses outside the selected range were accepted, and starting a new game kept old input and state. The tests also expected a string even though `check_guess` returns an outcome and message tuple.
+- [x] **Fixes applied:** Game state is stored and reset explicitly with Streamlit session state, hints now correctly say **Go LOWER!** or **Go HIGHER!**, invalid guesses are rejected, and the New Game button clears the input and resets the round. Game logic was moved into `logic_utils.py`, and the tests were updated to check the returned outcome value.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. Open the game and review the displayed difficulty, range, attempt limit, and current game status.
+2. Select a difficulty level. The game displays the number range and the number of attempts available.
+3. Enter a whole-number guess within the displayed range and select **Submit Guess**. Invalid or out-of-range guesses receive an error message.
+4. Use the feedback to adjust the next guess. A guess above the secret number says **Go LOWER!**, while a guess below it says **Go HIGHER!**.
+5. Continue guessing until you find the secret number or run out of attempts. The game displays the final score when the game ends.
+6. Select **New Game** to clear the previous guess and game history, reset the score and attempts, and start a new round.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+tests/test_game_logic.py ...                           [100%]
+
+===================== 3 passed in 0.01s ======================
 ```
 
 ## 🚀 Stretch Features
