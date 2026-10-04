@@ -18,12 +18,9 @@ def parse_guess(raw: str, low: int = 1, high: int = 100):
         return False, None, "Enter a guess."
 
     try:
-        if "." in raw:
-            value = int(float(raw))
-        else:
-            value = int(raw)
+        value = int(raw)
     except Exception:
-        return False, None, "That is not a number."
+        return False, None, "That is not a valid number."
 
     if value < low or value > high:
         return False, None, f"Guess must be between {low} and {high}."
